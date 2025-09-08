@@ -31,7 +31,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-your-secret-key-here-chang
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,*.koyeb.app').split(',')
 
 
 # Application definition
@@ -158,7 +158,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://araya-portfolio-*.koyeb.app",
+    "https://legal-joceline-arusoftwaresolutions-366e2846.koyeb.app",
     "https://araya-haftu.com",
     "https://www.araya-haftu.com",
 ]
@@ -169,7 +169,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "https://araya-portfolio-*.koyeb.app",
+    "https://legal-joceline-arusoftwaresolutions-366e2846.koyeb.app",
     "https://araya-haftu.com",
     "https://www.araya-haftu.com",
 ]
