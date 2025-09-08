@@ -31,7 +31,11 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-your-secret-key-here-chang
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,legal-joceline-arusoftwaresolutions-366e2846.koyeb.app,araya-haftu.com,www.araya-haftu.com').split(',')
+# Debug: Print ALLOWED_HOSTS to see what's being set
+ALLOWED_HOSTS_ENV = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,legal-joceline-arusoftwaresolutions-366e2846.koyeb.app,araya-haftu.com,www.araya-haftu.com')
+print(f"DEBUG: ALLOWED_HOSTS_ENV = {ALLOWED_HOSTS_ENV}")
+ALLOWED_HOSTS = ALLOWED_HOSTS_ENV.split(',')
+print(f"DEBUG: ALLOWED_HOSTS = {ALLOWED_HOSTS}")
 
 
 # Application definition
