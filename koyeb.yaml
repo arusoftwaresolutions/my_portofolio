@@ -1,0 +1,28 @@
+services:
+  - name: araya-portfolio
+    type: web
+    env: python
+    build:
+      commands:
+        - pip install -r requirements.txt
+        - python manage.py collectstatic --noinput
+        - python manage.py migrate
+    run:
+      command: gunicorn portfolio_backend.wsgi --bind 0.0.0.0:$PORT
+    env:
+      - name: DEBUG
+        value: "False"
+      - name: SECRET_KEY
+        generateValue: true
+      - name: ALLOWED_HOSTS
+        value: "araya-portfolio-*.koyeb.app,araya-haftu.com,www.araya-haftu.com"
+      - name: EMAIL_HOST
+        value: "smtp.gmail.com"
+      - name: EMAIL_PORT
+        value: "587"
+      - name: EMAIL_USE_TLS
+        value: "True"
+      - name: EMAIL_HOST_USER
+        value: "arayahaftu1229@gmail.com"
+      - name: EMAIL_HOST_PASSWORD
+        secret: true
