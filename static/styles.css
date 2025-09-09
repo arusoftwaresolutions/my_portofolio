@@ -799,6 +799,56 @@ section {
     font-size: var(--font-size-sm);
 }
 
+.contact-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: var(--transition-normal);
+    border-bottom: 1px solid transparent;
+}
+
+.contact-link:hover {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    text-decoration: none;
+}
+
+.contact-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    transition: var(--transition-normal);
+    border: 1px solid var(--border-color);
+}
+
+.contact-item-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.contact-item-link:hover {
+    transform: translateX(10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(0, 123, 255, 0.15);
+}
+
+.contact-item-link:hover .contact-icon {
+    background: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.contact-item-link:hover .contact-details h3 {
+    color: var(--primary-color);
+}
+
+.contact-item-link:hover .contact-details p {
+    color: var(--text-primary);
+}
+
 .contact-form-container {
     background: var(--bg-secondary);
     padding: var(--spacing-xl);

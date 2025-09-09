@@ -31,9 +31,15 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-your-secret-key-here-chang
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
-# Temporary fix: Allow all hosts to get the site working
-# TODO: Restrict this to specific domains once confirmed working
-ALLOWED_HOSTS = ['*']
+# Production ALLOWED_HOSTS - Current Koyeb URL configuration
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'legal-joceline-arusoftwaresolutions-366e2846.koyeb.app',
+    'www.legal-joceline-arusoftwaresolutions-366e2846.koyeb.app',
+    'araya-haftu.duckdns.org',
+    'www.araya-haftu.duckdns.org'
+]
 
 
 # Application definition

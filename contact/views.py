@@ -43,7 +43,7 @@ def contact_form(request):
             message=message
         )
         
-        # Send email notification
+        # Try to send email notification (optional)
         try:
             subject = f'New Contact Form Submission from {name}'
             
@@ -66,49 +66,20 @@ def contact_form(request):
                 message=email_content,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.EMAIL_HOST_USER],
-                fail_silently=False,
-            )
-            
-            # Send confirmation email to the sender
-            confirmation_subject = 'Thank you for contacting Araya Haftu'
-            confirmation_message = f"""
-            Hi {name},
-            
-            Thank you for reaching out! I have received your message and will get back to you as soon as possible.
-            
-            Your message:
-            {message}
-            
-            Best regards,
-            Araya Haftu
-            Fullstack Developer & Prompt Engineer
-            
-            ---
-            This is an automated response. Please do not reply to this email.
-            """
-            
-            send_mail(
-                subject=confirmation_subject,
-                message=confirmation_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-                fail_silently=False,
+                fail_silently=True,  # Changed to True to not fail if email doesn't work
             )
             
             logger.info(f"Contact form submitted successfully by {name} ({email})")
             
-            return JsonResponse({
-                'success': True,
-                'message': 'Message sent successfully! I\'ll get back to you soon.'
-            })
-            
         except Exception as email_error:
-            logger.error(f"Failed to send email for contact form: {email_error}")
-            # Still return success since the message was saved to database
-            return JsonResponse({
-                'success': True,
-                'message': 'Message received! I\'ll get back to you soon.'
-            })
+            logger.error(f"Email sending failed (but message saved): {email_error}")
+            # Continue anyway - message is saved to database
+        
+        # Always return success since message is saved
+        return JsonResponse({
+            'success': True,
+            'message': 'Message received! I\'ll get back to you soon.'
+        })
             
     except json.JSONDecodeError:
         return JsonResponse({
