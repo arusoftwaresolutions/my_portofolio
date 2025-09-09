@@ -35,7 +35,7 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'araya-haftu.koyeb.app',
+    'normal-abigael-arusoftwaresolutions-e2a1ec48.koyeb.app',
     'araya-haftu.duckdns.org',
 ]
 

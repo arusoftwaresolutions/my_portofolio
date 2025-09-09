@@ -16,7 +16,7 @@ services:
       - name: SECRET_KEY
         generateValue: true
       - name: ALLOWED_HOSTS
-        value: "localhost,127.0.0.1,araya-haftu.koyeb.app,araya-haftu.duckdns.org"
+        value: "localhost,127.0.0.1,normal-abigael-arusoftwaresolutions-e2a1ec48.koyeb.app,araya-haftu.duckdns.org"
       - name: EMAIL_HOST
         value: "smtp.gmail.com"
       - name: EMAIL_PORT
