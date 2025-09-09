@@ -348,7 +348,7 @@
                         </div>
                         <h3>Ready to Download</h3>
                         <p>Get my CV in PDF format. Ready for job applications.</p>
-                        <a href="/static/Araya_Haftu_CV.pdf" download="Araya_Haftu_CV.pdf" class="btn btn-primary btn-large">
+                        <a href="../static/Araya_Haftu_CV.pdf" download="Araya_Haftu_CV.pdf" class="btn btn-primary btn-large">
                             <i class="fas fa-download"></i>
                             Download CV (PDF)
                         </a>
@@ -423,6 +423,7 @@
 
                 <div class="contact-form-container">
                     <form class="contact-form" id="contactForm">
+                        {% csrf_token %}
                         <div class="form-group">
                             <input type="text" id="name" name="name" required>
                             <label for="name">Name</label>
