@@ -26,4 +26,4 @@ services:
       - name: EMAIL_HOST_USER
         value: "arayahaftu1229@gmail.com"
       - name: EMAIL_HOST_PASSWORD
-        secret: true
+        value: "hwmb bmfh jpdn iovp"

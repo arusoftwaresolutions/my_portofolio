@@ -83,7 +83,7 @@ def contact_form(request):
                 message=email_content,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.EMAIL_HOST_USER],
-                fail_silently=False,  # Changed to False to see actual errors
+                fail_silently=True,  # Changed back to True to not fail the form
             )
             
             if result:
