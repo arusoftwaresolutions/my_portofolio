@@ -18,12 +18,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
+from django.shortcuts import render
+
+def home_view(request):
+    return render(request, 'index.html')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('contact/', include('contact.urls')),
-    path('', TemplateView.as_view(template_name='index.html'), name='home'),
+    path('', home_view, name='home'),
 ]
 
 # Serve static and media files during development
