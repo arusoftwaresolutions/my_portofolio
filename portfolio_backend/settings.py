@@ -35,7 +35,7 @@ DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'legal-joceline-arusoftwaresolutions-366e2846.koyeb.app',
+    'araya-haftu.koyeb.app',
     'araya-haftu.duckdns.org',
 ]
 
@@ -164,7 +164,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
-    "https://legal-joceline-arusoftwaresolutions-366e2846.koyeb.app",
+    "https://araya-haftu.koyeb.app",
     "https://araya-haftu.duckdns.org",
 ]
 
@@ -174,7 +174,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:8000",
     "http://127.0.0.1:8000",
-    "https://legal-joceline-arusoftwaresolutions-366e2846.koyeb.app",
+    "https://araya-haftu.koyeb.app",
     "https://araya-haftu.duckdns.org",
 ]
 
