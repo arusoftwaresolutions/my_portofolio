@@ -123,19 +123,32 @@ contactForm.addEventListener('submit', async (e) => {
     const btnText = submitBtn.querySelector('.btn-text');
     const btnLoading = submitBtn.querySelector('.btn-loading');
     
-    // Show loading state
-    submitBtn.classList.add('loading');
-    btnText.style.display = 'none';
-    btnLoading.style.display = 'inline-flex';
-    submitBtn.disabled = true;
-    
-    // Get form data
+    // Get form data first
     const formData = new FormData(contactForm);
     const data = {
         name: formData.get('name'),
         email: formData.get('email'),
         message: formData.get('message')
     };
+    
+    // Client-side validation
+    if (!data.name || !data.email || !data.message) {
+        showMessage('Please fill in all fields.', 'error');
+        return;
+    }
+    
+    // Email validation
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(data.email)) {
+        showMessage('Please enter a valid email address.', 'error');
+        return;
+    }
+    
+    // Show loading state after validation passes
+    submitBtn.classList.add('loading');
+    btnText.style.display = 'none';
+    btnLoading.style.display = 'inline-flex';
+    submitBtn.disabled = true;
     
     try {
         const response = await fetch('/contact/', {

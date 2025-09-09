@@ -1,10 +1,13 @@
 import json
 import logging
+import re
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from .models import ContactMessage
 
 logger = logging.getLogger('contact')
@@ -28,10 +31,19 @@ def contact_form(request):
                 'error': 'All fields are required.'
             }, status=400)
         
-        # Validate email format
-        if '@' not in email or '.' not in email:
+        # Validate email format using Django's built-in validator
+        try:
+            validate_email(email)
+        except ValidationError:
             return JsonResponse({
                 'error': 'Please enter a valid email address.'
+            }, status=400)
+        
+        # Additional email validation
+        email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+        if not re.match(email_pattern, email):
+            return JsonResponse({
+                'error': 'Please enter a valid email address format.'
             }, status=400)
         
         # Save to database
@@ -40,6 +52,8 @@ def contact_form(request):
             email=email,
             message=message
         )
+        
+        logger.info(f"Contact message saved: {name} ({email}) - Message ID: {contact_message.id}")
         
         # Try to send email notification (optional)
         try:
@@ -59,18 +73,22 @@ def contact_form(request):
             """
             
             # Send email to yourself
-            send_mail(
+            result = send_mail(
                 subject=subject,
                 message=email_content,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 recipient_list=[settings.EMAIL_HOST_USER],
-                fail_silently=True,  # Changed to True to not fail if email doesn't work
+                fail_silently=False,  # Changed to False to see actual errors
             )
             
-            logger.info(f"Contact form submitted successfully by {name} ({email})")
+            if result:
+                logger.info(f"Email sent successfully to {settings.EMAIL_HOST_USER} for message from {name} ({email})")
+            else:
+                logger.warning(f"Email sending returned False for message from {name} ({email})")
             
         except Exception as email_error:
-            logger.error(f"Email sending failed (but message saved): {email_error}")
+            logger.error(f"Email sending failed (but message saved): {str(email_error)}")
+            logger.error(f"Email settings - HOST: {settings.EMAIL_HOST}, PORT: {settings.EMAIL_PORT}, USER: {settings.EMAIL_HOST_USER}")
             # Continue anyway - message is saved to database
         
         # Always return success since message is saved
