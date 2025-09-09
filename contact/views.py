@@ -25,6 +25,8 @@ def contact_form(request):
         email = data.get('email', '').strip()
         message = data.get('message', '').strip()
         
+        logger.info(f"Contact form received: {name}, {email}, message length: {len(message)}")
+        
         # Validate required fields
         if not all([name, email, message]):
             return JsonResponse({
@@ -46,14 +48,17 @@ def contact_form(request):
                 'error': 'Please enter a valid email address format.'
             }, status=400)
         
-        # Save to database
-        contact_message = ContactMessage.objects.create(
-            name=name,
-            email=email,
-            message=message
-        )
-        
-        logger.info(f"Contact message saved: {name} ({email}) - Message ID: {contact_message.id}")
+        # Save to database (with error handling)
+        try:
+            contact_message = ContactMessage.objects.create(
+                name=name,
+                email=email,
+                message=message
+            )
+            logger.info(f"Contact message saved: {name} ({email}) - Message ID: {contact_message.id}")
+        except Exception as db_error:
+            logger.error(f"Database save failed: {str(db_error)}")
+            # Continue anyway - we'll still try to send email
         
         # Try to send email notification (optional)
         try:
