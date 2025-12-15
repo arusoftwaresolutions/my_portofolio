@@ -15,5 +15,3 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'portfolio_backend.settings')
 
 application = get_wsgi_application()
 
-from whitenoise import WhiteNoise
-application = WhiteNoise(application, root=os.path.join(os.path.dirname(__file__), 'staticfiles'))
