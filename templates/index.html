@@ -8,12 +8,12 @@
     <meta name="description" content="Araya Haftu - Passionate Fullstack Developer, building modern solutions with code and creativity.">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/jpeg" href="../static/IMG_4431.JPG">
-    <link rel="shortcut icon" type="image/jpeg" href="../static/IMG_4431.JPG">
-    <link rel="apple-touch-icon" href="../static/IMG_4431.JPG">
+    <link rel="icon" type="image/jpeg" href="{% static 'IMG_4431.JPG' %}">
+    <link rel="shortcut icon" type="image/jpeg" href="{% static 'IMG_4431.JPG' %}">
+    <link rel="apple-touch-icon" href="{% static 'IMG_4431.JPG' %}">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="../static/styles.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -57,7 +57,7 @@
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-image">
-                    <img src="../static/IMG_4431.JPG" alt="Araya Haftu" class="profile-img">
+                    <img src="{% static 'IMG_4431.JPG' %}" alt="Araya Haftu" class="profile-img">
                     <div class="image-glow"></div>
                 </div>
                 <div class="hero-text">
@@ -374,7 +374,7 @@
                         </div>
                         <h3>Ready to Download</h3>
                         <p>Get my CV in PDF format. Ready for job applications.</p>
-                        <a href="../static/Araya_Haftu_CV.pdf" download="Araya_Haftu_CV.pdf" class="btn btn-primary btn-large">
+                        <a href="{% static 'Araya_Haftu_CV.pdf' %}" download="Araya_Haftu_CV.pdf" class="btn btn-primary btn-large">
                             <i class="fas fa-download"></i>
                             Download CV (PDF)
                         </a>
@@ -487,6 +487,6 @@
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script src="../static/script.js"></script>
+    <script src="{% static 'script.js' %}"></script>
 </body>
 </html>
