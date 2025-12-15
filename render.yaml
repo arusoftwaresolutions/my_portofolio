@@ -16,7 +16,7 @@ services:
       - name: SECRET_KEY
         generateValue: true
         - name: ALLOWED_HOSTS
-          value: "localhost,127.0.0.1, https://araya-haftu.onrender.com,www.araya-haftu.dedyn.io"
+          value: "localhost,127.0.0.1, araya-haftu.onrender.com,www.araya-haftu.dedyn.io"
       - name: EMAIL_HOST
         value: "smtp.gmail.com"
       - name: EMAIL_PORT
